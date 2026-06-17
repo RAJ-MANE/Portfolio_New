@@ -124,8 +124,14 @@
   padding: 8px 12px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
   border-bottom: var(--border-w) solid var(--border);
+}
+
+.windowHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .dot {
@@ -142,6 +148,66 @@
   color: var(--bg-card);
   margin-left: 8px;
 }
+
+.scanToggleBtn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px var(--border);
+  transition: all 0.1s ease;
+}
+
+.scanToggleBtn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--border);
+  background-color: var(--accent-warning);
+}
+
+.scanToggleBtn:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px var(--border);
+}
+
+.scanToggleBtn.scanActive {
+  background-color: #39FF14;
+  color: #000;
+  box-shadow: 1px 1px 0px #000;
+  border-color: #000;
+}
+
+.scanToggleBtn.scanActive:hover {
+  background-color: #2feb10;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.pulseIndicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #888;
+}
+
+.pulseIndicator.pulseActive {
+  background-color: #ff0055;
+  box-shadow: 0 0 4px #ff0055;
+  animation: pulseGlow 1s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
 
 .imageWrapper {
   position: relative;
@@ -214,3 +280,110 @@
     width: 100%;
   }
 }
+
+.gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 3px
+  );
+  background-size: 100% 4px;
+}
+
+.scanLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #39FF14, transparent);
+  box-shadow: 0 0 8px #39FF14, 0 0 15px #39FF14;
+  z-index: 6;
+  pointer-events: none;
+  animation: scanMotion 3s linear infinite;
+}
+
+@keyframes scanMotion {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+.boundingBox {
+  position: absolute;
+  border: 2px dashed #39FF14;
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+  z-index: 7;
+  pointer-events: none;
+}
+
+.boxLabel {
+  position: absolute;
+  top: -18px;
+  left: -2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  background-color: #39FF14;
+  color: #000;
+  padding: 1px 4px;
+  border: 1.5px solid #000;
+  box-shadow: 1px 1px 0px #000;
+  white-space: nowrap;
+}
+
+/* Coordinates for bounding boxes relative to 1:1 container */
+.boxFace {
+  top: 25%;
+  left: 24%;
+  width: 52%;
+  height: 60%;
+}
+
+.boxGlasses {
+  top: 48%;
+  left: 31%;
+  width: 38%;
+  height: 12%;
+  border-color: #00E5FF;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+.boxGlasses .boxLabel {
+  background-color: #00E5FF;
+}
+
+.boxCode {
+  top: 38%;
+  left: 5%;
+  width: 20%;
+  height: 30%;
+  border-color: #FF0055;
+  box-shadow: 0 0 8px rgba(255, 0, 85, 0.3);
+}
+
+.boxCode .boxLabel {
+  background-color: #FF0055;
+  color: #fff;
+}
+
+.boxCloud {
+  top: 6%;
+  left: 62%;
+  width: 28%;
+  height: 25%;
+  border-color: #E5A93B;
+  box-shadow: 0 0 8px rgba(229, 169, 59, 0.3);
+}
+
+.boxCloud .boxLabel {
+  background-color: #E5A93B;
+}
+

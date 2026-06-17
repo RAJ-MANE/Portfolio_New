@@ -1,11 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaDownload } from "react-icons/fa";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
+  const [isManualScanning, setIsManualScanning] = useState(false);
+  const [isHoverScanning, setIsHoverScanning] = useState(false);
+
+  const isScanning = isManualScanning || isHoverScanning;
+
   return (
     <section className={styles.hero} id="hero">
       <div className={styles.container}>
@@ -70,12 +76,27 @@ export default function Hero() {
         <div className={styles.imageCol}>
           <div className={styles.imageStack}>
             <div className={styles.backgroundOffsetCard} />
-            <div className={styles.imageCard}>
+            <div 
+              className={styles.imageCard}
+              onMouseEnter={() => setIsHoverScanning(true)}
+              onMouseLeave={() => setIsHoverScanning(false)}
+            >
               <div className={styles.windowHeader}>
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-                <span className={styles.windowTitle}>raj_mane.png</span>
+                <div className={styles.windowHeaderLeft}>
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.windowTitle}>raj_mane.png</span>
+                </div>
+                <button
+                  type="button"
+                  className={`${styles.scanToggleBtn} ${isScanning ? styles.scanActive : ""}`}
+                  onClick={() => setIsManualScanning(!isManualScanning)}
+                  title="Toggle AI Vision Scanner"
+                >
+                  <span className={`${styles.pulseIndicator} ${isScanning ? styles.pulseActive : ""}`} />
+                  {isScanning ? "AI SCAN: ON" : "AI SCAN: OFF"}
+                </button>
               </div>
               <div className={styles.imageWrapper}>
                 <Image
@@ -85,6 +106,56 @@ export default function Hero() {
                   className={styles.heroImage}
                   priority
                 />
+                
+                {isScanning && (
+                  <>
+                    {/* CRT Grid scanlines overlay */}
+                    <div className={styles.gridOverlay} />
+                    
+                    {/* Moving laser scan line */}
+                    <div className={styles.scanLine} />
+
+                    {/* Face detection */}
+                    <motion.div 
+                      className={`${styles.boundingBox} ${styles.boxFace}`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.05 }}
+                    >
+                      <span className={styles.boxLabel}>person: Raj Mane [99.9%]</span>
+                    </motion.div>
+
+                    {/* Glasses detection */}
+                    <motion.div 
+                      className={`${styles.boundingBox} ${styles.boxGlasses}`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                    >
+                      <span className={styles.boxLabel}>glasses: detected</span>
+                    </motion.div>
+
+                    {/* Syntax/Code decoration detection */}
+                    <motion.div 
+                      className={`${styles.boundingBox} ${styles.boxCode}`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.35 }}
+                    >
+                      <span className={styles.boxLabel}>syntax: code</span>
+                    </motion.div>
+
+                    {/* Cloud shape detection */}
+                    <motion.div 
+                      className={`${styles.boundingBox} ${styles.boxCloud}`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.5 }}
+                    >
+                      <span className={styles.boxLabel}>env: cloud_computing</span>
+                    </motion.div>
+                  </>
+                )}
               </div>
             </div>
             {/* Embedded sticker on image card */}
