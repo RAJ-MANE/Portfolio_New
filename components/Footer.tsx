@@ -7,9 +7,6 @@ export default function Footer() {
         <p className={styles.copy}>
           © {new Date().getFullYear()} RAJ MANE. ALL RIGHTS RESERVED.
         </p>
-        <p className={styles.credit}>
-          BUILT BY HUMAN HANDS WITH 🧠 AND 💻 — NEUBRUTALISM STYLE.
-        </p>
       </div>
     </footer>
   );
