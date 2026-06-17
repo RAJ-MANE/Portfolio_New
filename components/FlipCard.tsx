@@ -67,7 +67,7 @@ export default function FlipCard({
               <span className={styles.orgText}>{org}</span>
             </div>
             <h3 className={styles.cardTitle}>{title}</h3>
-            <p className={styles.cardDesc} style={{ color: lightText ? "rgba(255, 255, 255, 0.82)" : "var(--text-muted)" }}>
+            <p className={styles.cardDesc} style={{ color: lightText ? "rgba(255, 255, 255, 0.82)" : "rgba(42, 42, 40, 0.85)" }}>
               {desc}
             </p>
           </div>

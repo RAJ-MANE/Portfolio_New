@@ -18,6 +18,7 @@ const HACKATHONS_COMPETITIONS_DATA = [
     type: "WINNER 🥇",
     desc: "First place in optimization, architecture design, and inference precision benchmarking.",
     color: "var(--accent-pink)",
+    lightText: true,
     certImage: "/model forge certificate.jpeg",
   },
   {
