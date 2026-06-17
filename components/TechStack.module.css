@@ -1,0 +1,40 @@
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.categoryCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  padding: 16px 24px;
+  border-bottom: var(--border-w) solid var(--border);
+}
+
+.categoryTitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.skillsList {
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

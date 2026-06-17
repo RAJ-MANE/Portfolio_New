@@ -1,0 +1,93 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.description {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.description strong {
+  text-decoration: underline var(--accent-primary) 3px;
+  font-weight: 600;
+}
+
+.skillsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.terminalBox {
+  margin-top: auto;
+  border: 2px solid var(--border);
+  background-color: #1A1A1A;
+  box-shadow: 4px 4px 0px var(--shadow);
+}
+
+.terminalHeader {
+  background-color: #2A2A2A;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 2px solid var(--border);
+}
+
+.tDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #555;
+}
+
+.tTitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #888;
+  margin-left: 8px;
+}
+
+.terminalBody {
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #AAA;
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardLeft {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardRight {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--bg-canvas);
+}
+
+@media (max-width: 767px) {
+  .cardLeft, .cardRight {
+    padding: 20px;
+  }
+}
