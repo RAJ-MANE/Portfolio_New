@@ -78,6 +78,9 @@ export default function ProjectCard({
     document.addEventListener("touchend", handleTouchEnd);
   };
 
+  const isLightBg = color === "var(--accent-warning)";
+  const textColor = isLightBg ? "var(--text-primary)" : "var(--text-inverse)";
+
   return (
     <div className={`nb-card ${styles.projectCard}`} style={{ borderColor: "var(--border)" }}>
       {/* OS Titlebar */}
@@ -85,7 +88,7 @@ export default function ProjectCard({
         <span className={styles.dot} style={{ backgroundColor: "#FF3B30" }} />
         <span className={styles.dot} style={{ backgroundColor: "#FFCC00" }} />
         <span className={styles.dot} style={{ backgroundColor: "#00C853" }} />
-        <span className={styles.filename}>{filename}</span>
+        <span className={styles.filename} style={{ color: textColor }}>{filename}</span>
       </div>
 
       {/* Interactive Mock Slider Area */}
@@ -197,7 +200,7 @@ export default function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               className="nb-button"
-              style={{ padding: "8px 16px", fontSize: "0.8rem", backgroundColor: color, color: "var(--text-primary)" }}
+              style={{ padding: "8px 16px", fontSize: "0.8rem", backgroundColor: color, color: textColor }}
             >
               <FaExternalLinkAlt /> Live Demo
             </a>
