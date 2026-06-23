@@ -38,8 +38,8 @@ export default function Hero() {
               <FaArrowRight size={14} />
             </a>
             <a
-              href="/RAJ_MANE_Resume.pdf"
-              download="Raj_Mane_Resume.pdf"
+              href="/Raj_Mane_Resume_v2.pdf"
+              download="Raj_Mane_Resume_v2.pdf"
               className="nb-button nb-button--outline"
             >
               Resume
