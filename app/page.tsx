@@ -55,15 +55,23 @@ export default function Home() {
       const text = target.textContent?.trim().toUpperCase() || "";
       let message = "TRANSMITTING SIGNAL...";
 
-      if (href) {
-        if (href.startsWith("#")) {
-          const sectionName = href.replace("#", "").toUpperCase();
-          if (sectionName) {
-            message = `ROUTING TO ${sectionName}...`;
-          } else {
-            message = "SCROLLING TO TOP...";
+      // Bypass loader for internal anchor links (smooth-scroll instantly)
+      if (href && (href.startsWith("#") || href === "#")) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
           }
-        } else if (href.includes("github.com")) {
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        return;
+      }
+
+      if (href) {
+        if (href.includes("github.com")) {
           message = "OPENING GITHUB PORTAL...";
         } else if (href.includes("linkedin.com")) {
           message = "CONNECTING TO LINKEDIN...";
@@ -84,29 +92,19 @@ export default function Home() {
       setTimeout(() => {
         // Perform action after transition completes
         if (href) {
-          if (href.startsWith("#")) {
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: "smooth" });
-            } else if (href === "#") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
+          const targetAttr = target.getAttribute("target");
+          if (targetAttr === "_blank") {
+            window.open(href, "_blank", "noopener,noreferrer");
           } else {
-            const targetAttr = target.getAttribute("target");
-            if (targetAttr === "_blank") {
-              window.open(href, "_blank", "noopener,noreferrer");
-            } else {
-              window.location.href = href;
-            }
+            window.location.href = href;
           }
         }
         
         // Short timeout to fade out loader
         setTimeout(() => {
           setTransitioning(false);
-        }, 200);
-      }, 850);
+        }, 150);
+      }, 300); // Fast 300ms transition
     };
 
     // 2. Custom event listener to trigger programmatically from other components

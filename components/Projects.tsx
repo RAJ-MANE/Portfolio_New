@@ -1,7 +1,6 @@
 "use client";
 
 import ProjectCard from "./ProjectCard";
-import ProjectFlipCard from "./ProjectFlipCard";
 import styles from "./Projects.module.css";
 
 const PROJECTS_DATA = [
@@ -17,6 +16,7 @@ const PROJECTS_DATA = [
     sliderRightText: "CANVAS MASK",
     sliderLeftBg: "#FFE8E8",
     sliderRightBg: "#111111",
+    codeSnippet: `import cv2\nimport mediapipe as mp\n\n# init camera pipeline\ncap = cv2.VideoCapture(0)\ndetector = mp.solutions.hands.Hands()\n\nwhile True:\n    ret, frame = cap.read()\n    # run landmark tracking...`,
   },
   {
     title: "Renewable Energy Optimizer",
@@ -53,28 +53,45 @@ const PROJECTS_DATA = [
 const FRONTEND_PROJECTS_DATA = [
   {
     title: "Fit In Fit Out",
+    filename: "diet_planner.tsx",
     description: "A comprehensive dietician portal featuring customized nutritional info, diet planners, client onboarding forms, and health blogs.",
     tags: ["React", "Vite", "Vanilla CSS", "Forms"],
     color: "var(--accent-warning)",
     github: "https://github.com/RAJ-MANE",
     demo: "https://fit-in-fit-out.vercel.app/",
+    sliderLeftText: "DIET FORM",
+    sliderRightText: "CALORIE ENGINE",
+    sliderLeftBg: "#FFFDEB",
+    sliderRightBg: "#1E1C18",
+    codeSnippet: `import React from 'react';\n\n// Calculate daily caloric needs\nconst getCalorieLimit = (bmr, activity) => {\n  return Math.round(bmr * activity);\n};\n\nexport default function DietPlanner() {\n  return <div className="planner">...</div>;\n}`,
   },
   {
     title: "Ancient Melodies Studio",
+    filename: "audio_synthesis.js",
     description: "An elegant, interactive portfolio and academy portal for ancient music instruction, featuring audio previews, courses, and schedules.",
     tags: ["React", "Tailwind CSS", "Framer Motion", "Audio Web API"],
     color: "var(--accent-pink)",
     github: "https://github.com/RAJ-MANE",
     demo: "https://ancient-melodies-studio.lovable.app/",
+    sliderLeftText: "MUSIC PORTFOLIO",
+    sliderRightText: "WEB AUDIO NODE",
+    sliderLeftBg: "#FDF0F3",
+    sliderRightBg: "#1F1618",
+    codeSnippet: `const AudioCtx = window.AudioContext;\nconst audioCtx = new AudioCtx();\n\n// Synthesis of ancient microtones\nconst playFreq = (frequency) => {\n  const osc = audioCtx.createOscillator();\n  osc.connect(audioCtx.destination);\n  osc.start();\n};`,
   },
   {
     title: "TCET EDIC E-Cell Website",
+    filename: "incubation_portal.tsx",
     description: "Official entrepreneurship cell web application of TCET Mumbai, facilitating startup incubations, hackathon registers, and community resource sharing.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
     color: "var(--accent-secondary)",
     github: "https://github.com/RAJ-MANE",
     demo: "https://edic-new.vercel.app/",
-    image: "/edic e cell logo.jpeg",
+    sliderLeftText: "ECELL PORTAL",
+    sliderRightText: "STARTUP REGISTER",
+    sliderLeftBg: "#EBF3FF",
+    sliderRightBg: "#161B22",
+    codeSnippet: `import { NextPage } from 'next';\n\n// TCET EDIC Incubation Portal\nconst IncubationPage: NextPage = () => {\n  return (\n    <Layout title="EDIC Incubation">\n      <StartupRegisterForm />\n    </Layout>\n  );\n};`,
   },
 ];
 
@@ -108,7 +125,7 @@ export default function Projects() {
           </div>
           <div className={styles.grid}>
             {FRONTEND_PROJECTS_DATA.map((proj) => (
-              <ProjectFlipCard key={proj.title} {...proj} />
+              <ProjectCard key={proj.title} {...proj} />
             ))}
           </div>
         </div>

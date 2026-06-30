@@ -79,10 +79,12 @@ function createPixel(
       const mouse = mousePos.current;
       const dx = p.x - mouse.x;
       const dy = p.y - mouse.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      const distSq = dx * dx + dy * dy;
 
       const radius = 180; // Distance of mouse influence
-      if (dist < radius) {
+      const radiusSq = radius * radius;
+      if (distSq < radiusSq) {
+        const dist = Math.sqrt(distSq);
         const factor = 1.0 - dist / radius; // 1 at cursor, 0 at boundary
         finalSize = p.size * (1.0 + 1.25 * factor); // Scale size up to 2.25x
         finalAlpha = 1.0 + 1.8 * factor; // Increase opacity up to 2.8x
@@ -118,7 +120,7 @@ export default function PixelBackground() {
   const mousePos = useRef({ x: -1000, y: -1000 });
 
   // Calibrated layout settings for a subtle, high-performance background texture
-  const gap = 32; // Bigger pixel cell grid spacing
+  const gap = 48; // Bigger pixel cell grid spacing
   const speed = 25; // Growth speed coefficient
 
   const init = useCallback(() => {

@@ -19,6 +19,7 @@ interface ProjectProps {
   sliderRightBg?: string;
   imageLeft?: string;
   imageRight?: string;
+  codeSnippet?: string;
 }
 
 export default function ProjectCard({
@@ -35,6 +36,7 @@ export default function ProjectCard({
   sliderRightBg = "#1A1A1A",
   imageLeft,
   imageRight,
+  codeSnippet,
 }: ProjectProps) {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,7 +120,7 @@ export default function ProjectCard({
               </div>
             ) : (
               <pre className={styles.codeSnippet}>
-                {`import cv2\nimport mediapipe as mp\n\n# init camera pipeline\ncap = cv2.VideoCapture(0)\n\nwhile True:\n    ret, frame = cap.read()\n    # raw frame input...`}
+                {codeSnippet || `import cv2\nimport mediapipe as mp\n\n# init camera pipeline\ncap = cv2.VideoCapture(0)\n\nwhile True:\n    ret, frame = cap.read()\n    # raw frame input...`}
               </pre>
             )}
           </div>
@@ -151,7 +153,7 @@ export default function ProjectCard({
             ) : (
               <>
                 <pre className={styles.codeSnippet} style={{ color: "#00FF88" }}>
-                  {`# running inference...\n[INFO] Fingertip tracked: (X:342, Y:190)\n[INFO] Gesture detected: INDEX_UP\n[ACTION] Drawing stroke at target coords\n[SUCCESS] Render matrix updated`}
+                  {codeSnippet ? `${codeSnippet}\n\n// running simulation...\n// compilation successful.` : `# running inference...\n[INFO] Fingertip tracked: (X:342, Y:190)\n[INFO] Gesture detected: INDEX_UP\n[ACTION] Drawing stroke at target coords\n[SUCCESS] Render matrix updated`}
                 </pre>
                 <div className={styles.glowTarget} style={{ left: `${sliderPos}%` }} />
               </>
