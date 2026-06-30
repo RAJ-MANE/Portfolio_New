@@ -8,5 +8,23 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
 }
+
+.sectionBlock {
+  margin-bottom: 50px;
+}
+
+.sectionSubTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 8px;
+}
+

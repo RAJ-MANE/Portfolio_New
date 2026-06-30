@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectCard from "./ProjectCard";
+import ProjectFlipCard from "./ProjectFlipCard";
 import styles from "./Projects.module.css";
 
 const PROJECTS_DATA = [
@@ -49,6 +50,34 @@ const PROJECTS_DATA = [
   },
 ];
 
+const FRONTEND_PROJECTS_DATA = [
+  {
+    title: "Fit In Fit Out",
+    description: "A comprehensive dietician portal featuring customized nutritional info, diet planners, client onboarding forms, and health blogs.",
+    tags: ["React", "Vite", "Vanilla CSS", "Forms"],
+    color: "var(--accent-warning)",
+    github: "https://github.com/RAJ-MANE",
+    demo: "https://fit-in-fit-out.vercel.app/",
+  },
+  {
+    title: "Ancient Melodies Studio",
+    description: "An elegant, interactive portfolio and academy portal for ancient music instruction, featuring audio previews, courses, and schedules.",
+    tags: ["React", "Tailwind CSS", "Framer Motion", "Audio Web API"],
+    color: "var(--accent-pink)",
+    github: "https://github.com/RAJ-MANE",
+    demo: "https://ancient-melodies-studio.lovable.app/",
+  },
+  {
+    title: "TCET EDIC E-Cell Website",
+    description: "Official entrepreneurship cell web application of TCET Mumbai, facilitating startup incubations, hackathon registers, and community resource sharing.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
+    color: "var(--accent-secondary)",
+    github: "https://github.com/RAJ-MANE",
+    demo: "https://edic-new.vercel.app/",
+    image: "/edic e cell logo.jpeg",
+  },
+];
+
 export default function Projects() {
   return (
     <section className="section" id="projects">
@@ -57,10 +86,32 @@ export default function Projects() {
         <h2 className="section-title">PROJECTS</h2>
       </div>
 
-      <div className={styles.grid}>
-        {PROJECTS_DATA.map((proj) => (
-          <ProjectCard key={proj.title} {...proj} />
-        ))}
+      <div className={styles.container}>
+        {/* Subsection 1: Core Systems & AI */}
+        <div className={styles.sectionBlock}>
+          <div className={styles.sectionSubTitle}>
+            <span>🤖</span>
+            <span>Core Systems & AI</span>
+          </div>
+          <div className={styles.grid}>
+            {PROJECTS_DATA.map((proj) => (
+              <ProjectCard key={proj.title} {...proj} />
+            ))}
+          </div>
+        </div>
+
+        {/* Subsection 2: Frontend & Web Interfaces */}
+        <div className={styles.sectionBlock} style={{ marginTop: "40px" }}>
+          <div className={styles.sectionSubTitle}>
+            <span>💻</span>
+            <span>Frontend & Web Interfaces</span>
+          </div>
+          <div className={styles.grid}>
+            {FRONTEND_PROJECTS_DATA.map((proj) => (
+              <ProjectFlipCard key={proj.title} {...proj} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
